@@ -35,14 +35,16 @@ const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', (e) => {
     e.preventDefault();
     var timestamp = Date.now();
-    uploadImage();
     db.collection('guides').add({
         title: createForm['title'].value,
         content: createForm['content'].value,
         date: timestamp,
         imgUrl: 'imageUrl',
         hasDr: 'waiting for results'
-    }).then(() => {
+    }).then(async () => {
+        const ref = await db.collection('guides').where('content', '==', createForm['content'].value).get();
+        uploadImage(ref.docs[0].id);
+
         //close the model and reset the form
         const modal = document.querySelector('#modal-create');
         M.Modal.getInstance(modal).close();
@@ -100,9 +102,10 @@ loginForm.addEventListener('submit', (e) => {
     })
 })
 
+// var imageLink = '';
 
 // File or Blob named mountains.jpg;
-const uploadImage = () => {
+const uploadImage = (docId) => {
     var file = document.getElementById("file").files[0];
     console.log(file.name)
     // Create the file metadata
@@ -148,9 +151,16 @@ const uploadImage = () => {
             // Upload completed successfully, now we can get the download URL
             uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                 console.log('File available at', downloadURL);
-                // return downloadURL;
+                
+                //insert the url to firestore.
+                db.collection("guides").doc(docId).set({
+                    imgUrl: downloadURL.toString()
+                },
+                    { merge: true }
+                )
+                console.log("done updating...")
+
             });
         });
 };
-
 

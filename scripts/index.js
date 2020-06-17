@@ -65,8 +65,9 @@ const setupGuides = (data, user) => {
     const li = `
       <li>
         <div class="collapsible-header" grey lighten-4>${guide.title}</div>
-        <div class="collapsible-body" white>${guide.content}</div>
-        <div class="collapsible-body" white>${new Date(guide.date).toDateString()}</div>
+        <div class="collapsible-body" white>Phone:&nbsp&nbsp${guide.content}</div>
+        <div class="collapsible-body" white>Date:&nbsp&nbsp${new Date(guide.date).toDateString()}</div>
+        <div class="collapsible-body" white>URL:&nbsp&nbsp${guide.imgUrl}</div>
       </li>
     `;
     html += li
