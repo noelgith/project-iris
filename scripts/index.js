@@ -1,10 +1,6 @@
 const guideList = document.querySelector('.guides');
 
-// const OutLinks1 = document.querySelector('.logged-out1');//login
-// const OutLinks2 = document.querySelector('.logged-out2');//signup
-// const InLinks1 = document.querySelector('.logged-in1');//account
-// const InLinks2 = document.querySelector('.logged-in2');//logout
-// const InLinks3 = document.querySelector('.logged-in3');//create guide
+
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
@@ -23,32 +19,14 @@ const setupUi = (user) => {
     accountDetails.innerHTML = html;
     
     });
-    
-    
-    // Array.prototype.forEach.call(loggedInLinks.children,item => item.style.display = 'block');
-    // Array.prototype.forEach.call(loggedOutLinks.children,item => item.style.display = 'none');
-    // console.log(loggedInLinks);
-    // console.log(loggedOutLinks)
-    // OutLinks1.style.display = 'none';
-    // OutLinks2.style.display = 'none';
-    // InLinks1.style.display = 'block';
-    // InLinks2.style.display = 'block';
-    // InLinks3.style.display = 'block';
-    // loggedInLinks.forEach(item => item.style.display = 'block');
-    // loggedOutLinks.forEach(item => item.style.display = 'none');
+
     loggedInLinks.forEach(item => item.style.display = 'block');
     loggedOutLinks.forEach(item => item.style.display = 'none');
 
   } else {
     adminItems.forEach(item => item.style.display = 'none');
     accountDetails.innerHTML = '';
-    //toggle ui elements
 
-    // OutLinks1.style.display = 'block';
-    // OutLinks2.style.display = 'block';
-    // InLinks1.style.display = 'none';
-    // InLinks2.style.display = 'none';
-    // InLinks3.style.display = 'none';
     loggedInLinks.forEach(item => item.style.display = 'none');
     loggedOutLinks.forEach(item => item.style.display = 'block');
   }
