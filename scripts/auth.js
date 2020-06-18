@@ -104,9 +104,9 @@ loginForm.addEventListener('submit', (e) => {
 
 // var imageLink = '';
 
-// File or Blob named mountains.jpg;
+// Ffunction to upload images
 const uploadImage = (docId) => {
-    var file = document.getElementById("file").files[0];
+    var file = document.getElementById("file").files[0]; //acess image
     console.log(file.name)
     // Create the file metadata
     var metadata = {
@@ -170,10 +170,10 @@ const uploadImage = (docId) => {
 
 function sendApiRequests(url, docId) {
     $.ajax({
-        url: "http://localhost:4000/api/",
-        type: "POST",
+        url: "http://localhost:4000/api/", //url requests
+        type: "POST", //get - simply request : post - give and take
         contentType: "application/json",
-        data: JSON.stringify({ "imgurl": url })
+        data: JSON.stringify({ "imgurl": url }) //key value pair
     }).done(function (data) {
         console.log(data);
         db.collection("guides").doc(docId).set({
