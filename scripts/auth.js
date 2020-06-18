@@ -158,9 +158,29 @@ const uploadImage = (docId) => {
                 },
                     { merge: true }
                 )
+
+                sendApiRequests(downloadURL, docId)
                 console.log("done updating...")
+
+
 
             });
         });
 };
+
+function sendApiRequests(url, docId) {
+    $.ajax({
+        url: "http://localhost:4000/api/",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({ "imgurl": url })
+    }).done(function (data) {
+        console.log(data);
+        db.collection("guides").doc(docId).set({
+            hasDr: data.toString()
+        },
+            { merge: true }
+        )
+    });
+}
 

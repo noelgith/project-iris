@@ -46,6 +46,7 @@ const setupGuides = (data, user) => {
         <div class="collapsible-body" white>Phone:&nbsp&nbsp${guide.content}</div>
         <div class="collapsible-body" white>Date:&nbsp&nbsp${new Date(guide.date).toDateString()}</div>
         <div class="collapsible-body" white>URL:&nbsp&nbsp${guide.imgUrl}</div>
+        <div class="collapsible-body" white>The patient is likely to have :&nbsp&nbsp${guide.hasDr}</div>
       </li>
     `;
     html += li
